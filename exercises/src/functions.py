@@ -32,7 +32,8 @@ Example:
 
 def calculate_area(width: float, height: float) -> float:
     # TODO: Implement this function
-    pass
+    return width * height
+print(calculate_area(5, 3))
 
 
 # =============================================================================
@@ -59,7 +60,8 @@ Example:
 def format_price(amount: float, currency: str = "$", decimals: int = 2) -> str:
     # TODO: Implement this function
     # Hint: Use round() and f-strings
-    pass
+    return f"{currency}{round(amount, decimals):.{decimals}f}"
+print(format_price(19.99))
 
 
 # =============================================================================
@@ -87,7 +89,14 @@ Example:
 def find_max(*args) -> float:
     # TODO: Implement this function
     # Hint: Check if args is empty first
-    pass
+    if not args:
+        raise ValueError("No arguments provided")
+    max_value = args[0]
+    for arg in args:
+        if arg > max_value:
+            max_value = arg
+    return max_value
+print(find_max(1, 5, 3))
 
 
 # =============================================================================
@@ -112,9 +121,13 @@ Example:
 def build_tag(tag_name: str, **kwargs) -> str:
     # TODO: Implement this function
     # Hint: Loop through kwargs.items() to build attribute string
-    pass
+    tag = f"<{tag_name}"
+    for key, value in kwargs.items():
+        tag += f" {key}=\"{value}\""
+    return tag + ">"
+print(build_tag("div"))
 
-
+#
 # =============================================================================
 # EXERCISE 1.5: Combining Parameters
 # =============================================================================
@@ -140,7 +153,9 @@ Example:
 
 def send_notification(recipient: str, message: str, *cc, **options) -> dict:
     # TODO: Implement this function
-    pass
+    dictionary = {"to": recipient, "message": message, "cc": list(cc), "options": options}
+    return dictionary
+print(send_notification("Devora", "Hi there!","Me", "urgent"))
 
 
 # =============================================================================
@@ -152,28 +167,35 @@ Complete the lambda expressions below.
 
 # TODO: Create a lambda that doubles a number
 # Example: double(5) -> 10
-double = None  # Replace None with your lambda
+double = lambda x: x * 2  # Replace None with your lambda
+print(double(5))
 
 
 # TODO: Create a lambda that checks if a number is even
 # Example: is_even(4) -> True, is_even(7) -> False
-is_even = None  # Replace None with your lambda
+is_even = lambda x: x%2 == 0 # Replace None with your lambda
+print(is_even(3))
 
 
 # TODO: Create a lambda that returns the last character of a string
 # Example: last_char("hello") -> "o"
-last_char = None  # Replace None with your lambda
+last_char = lambda x: x[-1] # Replace None with your lambda
+print(last_char("Devora"))
 
 
 # TODO: Use a lambda with sorted() to sort these words by their LENGTH
 words = ["python", "java", "go", "javascript", "c"]
 # Expected result: ["c", "go", "java", "python", "javascript"]
-sorted_by_length = None  # Replace None with sorted(..., key=lambda ...)
+sorted_by_length = sorted(words, key=lambda x: len(x))
+# Replace None with sorted(..., key=lambda ...)
+print(sorted_by_length)
 
 
 # TODO: Use a lambda with filter() to get only positive numbers
 numbers = [-3, 5, -1, 8, 0, -2, 10]
 # Expected result: [5, 8, 10]
-positive_only = None  # Replace None with list(filter(...))
+positive_only = list(filter(lambda x: x>0, numbers))
+# Replace None with list(filter(...))
+print(positive_only)
 
 
