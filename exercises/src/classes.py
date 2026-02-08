@@ -238,7 +238,7 @@ class Manager(Employee):
                  department: str, bonus: float = 0):
         # TODO: Call parent constructor with super()
         # TODO: Initialize department and bonus
-        super()
+        super().__init__(name, employee_id, base_salary)
         self.department = department
         self.bonus = bonus
 
@@ -250,17 +250,16 @@ class Manager(Employee):
 
     def get_info(self) -> str:
         # TODO: Return formatted string with Manager info
-        return f"ID: {self.employee_id} - {self.name}"
+        return f"ID: {self.employee_id} - {self.name} (Manager, {self.department})"
 
 
 
 class Developer(Employee):
-    def __init__(self, name: str, employee_id: str, base_salary: float,
-                 programming_languages: list = None):
+    def __init__(self, name: str, employee_id: str, base_salary: float, programming_languages: list = None):
         # TODO: Call parent constructor with super()
         # TODO: Initialize programming_languages (use empty list if None)
-        super()
-        self.programming_languages = programming_languages or []
+        super().__init__(name, employee_id, base_salary)
+        self.programming_languages = programming_languages if programming_languages is not None else [] 
 
 
     def add_language(self, language: str) -> None:
